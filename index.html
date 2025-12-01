@@ -4,18 +4,20 @@
   <meta charset="UTF-8">
   <title>QR Redirect</title>
   <script>
+    // URL-Parameter auslesen
     const params = new URLSearchParams(window.location.search);
     const part = params.get("part");
 
-    // Hier trägst du die Teil-zu-Formular Zuordnung ein
+    // Teil-zu-Formular Zuordnung
     const urls = {
-      "Schraube_M4": "https://forms.office.com/Pages/ResponsePage.aspx?id=rrMGg1nsJkqpck_EDzDmua9daFipiqNBupMMNvtV9T5UNTMzT1lPUVI4Q09DMkoxTEtLUUEzSUNLRy4u&rd0cde48cb66c437aa0be38763e3d6c54=Schraube_M4",
-      "Kabelbinder_200": "https://forms.office.com/e/DEINE_FORMS_ID",
-      "Motor_12V": "https://forms.office.com/e/DEINE_FORMS_ID"
+      "Schraube_M4": "https://forms.office.com/Pages/ResponsePage.aspx?id=rrMGg1nsJkqpck_EDzDmua9daFipiqNBupMMNvtV9T5UNTMzT1lPUVI4Q09DMkoxTEtLUUEzSUNLRy4u&rd0cde48cb66c437aa0be38763e3d6c54=Sdhraube",
+      "Kabelbinder_200": "https://forms.office.com/Pages/ResponsePage.aspx?id=DEIN_FORMULAR_LINK_KABELBINDER",
+      "Motor_12V": "https://forms.office.com/Pages/ResponsePage.aspx?id=DEIN_FORMULAR_LINK_MOTOR"
     };
 
+    // Weiterleitung oder Fehleranzeige
     if (urls[part]) {
-      window.location.href = urls[part];  // Weiterleitung
+      window.location.href = urls[part];
     } else {
       document.body.innerHTML = "<h2>Unbekannter QR-Code</h2>";
     }
