@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weiterleitung...</title>
+</head>
+<body>
+  <p>Bitte warten — Formular wird geöffnet…</p>
+
+  <script>
+    // === TRAGE HIER DEINE VORLAGEN-FORMS-URL EIN ===
+    // Diese URL musst du aus Microsoft Forms holen und den Testwert durch __PART__ ersetzen.
+    // Beispiel (verkürzt): "https://forms.office.com/Pages/ResponsePage.aspx?id=XXX&fieldabc=__PART__&other=YYY"
+    const templateUrl = "https://forms.office.com/Pages/ResponsePage.aspx?id=rrMGg1nsJkqpck_EDzDmua9daFipiqNBupMMNvtV9T5UNTMzT1lPUVI4Q09DMkoxTEtLUUEzSUNLRy4u&raadf76b38b634f799a156f0fc609890f=__PART__";
+
+    // Lese Parameter part aus der aktuellen URL, z. B. redirect.html?part=Schraube_M4
+    const params = new URLSearchParams(window.location.search);
+    const part = params.get('part') || params.get('Bauteil') || '';
+
+    if (!part) {
+      document.body.innerHTML = "<p>Kein Bauteil übergeben. Bitte QR-Code prüfen.</p>";
+    } else {
+      // Ersetze __PART__ im Template mit encodedURIComponent(part)
+      const encodedPart = encodeURIComponent(part);
+      const target = templateUrl.replace(/__PART__/g, encodedPart);
+
+      // Optional: kurze Info anzeigen bevor weitergeleitet wird
+      document.body.innerHTML = "<p>Öffne Formular für: <strong>" + part + "</strong><br>Wenn nichts passiert, <a href='" + target + "'>hier klicken</a>.</p>";
+
+      // Weiterleiten nach 600ms
+      setTimeout(function() {
+        window.location.href = target;
+      }, 600);
+    }
+  </script>
+</body>
+</html>
